@@ -1,31 +1,19 @@
-// app/category/[slug]/page.tsx
 import { getTopHeadlines } from "@/lib/news";
 import NewsGrid from "@/components/NewsGrid";
 
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
+export const dynamic = 'force-dynamic'; // Ensures production always fetches fresh data
 
-export default async function CategoryPage({ params }: PageProps) {
-  // Await the slug from params (Required in Next.js 15)
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
-  // Fetch news specifically for this category
   const articles = await getTopHeadlines(slug);
 
   return (
-    <div className="max-w-7xl mx-auto py-10 px-4">
-      <div className="border-b-2 border-[#1e40af] mb-10 pb-2">
-        <h1 className="text-4xl font-black uppercase tracking-tighter">
-          {slug} <span className="text-[#1e40af]">News</span>
-        </h1>
+    <main className="max-w-7xl mx-auto py-10 px-4 min-h-screen">
+      <div className="border-l-8 border-[#1e40af] pl-4 mb-10">
+        <h1 className="text-5xl font-black uppercase tracking-tighter">{slug}</h1>
+        <p className="text-gray-400 font-bold text-xs tracking-widest uppercase">Jomah Global Coverage</p>
       </div>
-      
-      {articles.length > 0 ? (
-        <NewsGrid articles={articles} />
-      ) : (
-        <p className="text-gray-400">Loading the latest {slug} reports...</p>
-      )}
-    </div>
+      <NewsGrid articles={articles} />
+    </main>
   );
 }
