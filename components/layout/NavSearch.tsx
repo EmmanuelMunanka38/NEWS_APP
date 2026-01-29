@@ -16,9 +16,8 @@ export default function NavSearch() {
   };
 
   return (
-    <form onSubmit={handleSearch} className="relative hidden lg:block group">
+    <form onSubmit={handleSearch} className="relative w-full group">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        {/* Search Icon */}
         <svg 
           className="h-4 w-4 text-gray-400 group-focus-within:text-[#1e40af] transition-colors" 
           fill="none" 
@@ -33,7 +32,7 @@ export default function NavSearch() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="SEARCH ARCHIVES..."
-        className="block w-64 bg-gray-50 border border-gray-200 rounded-sm pl-10 pr-3 py-1.5 text-[10px] font-black tracking-widest outline-none focus:bg-white focus:border-[#1e40af] focus:ring-1 focus:ring-[#1e40af] transition-all placeholder:text-gray-300"
+        className="block w-full md:w-64 bg-gray-50 border border-gray-200 rounded-sm pl-10 pr-3 py-1.5 text-[10px] font-black tracking-widest outline-none focus:bg-white focus:border-[#1e40af] focus:ring-1 focus:ring-[#1e40af] transition-all placeholder:text-gray-300"
       />
     </form>
   );
